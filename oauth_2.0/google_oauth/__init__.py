@@ -19,7 +19,9 @@ def create_app():
     with app.app_context():
         
         from google_oauth.routes import views
+        from google_oauth.auth.routes import auth
         app.register_blueprint(views)
+        app.register_blueprint(auth)
     # where the routes and blue prints will be initialized and called. 
     
         db.create_all() 
