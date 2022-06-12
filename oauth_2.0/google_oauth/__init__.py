@@ -1,11 +1,14 @@
+from distutils.log import Log
 from flask import Flask
 from google_oauth import config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
+from flask_login import LoginManager
 
 db = SQLAlchemy()
 migrate = Migrate()
+login_manager = LoginManager()
 
 def create_app():
     app=Flask(__name__)
@@ -14,7 +17,7 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
     db.init_app(app)
-    migrate.init_app(app, db)
+    login_manager.init_app(app)
     
     with app.app_context():
         
@@ -25,6 +28,7 @@ def create_app():
     # where the routes and blue prints will be initialized and called. 
     
         db.create_all() 
+        migrate.init_app(app, db)
         
         
         

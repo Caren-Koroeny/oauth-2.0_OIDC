@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    Welcome To your profile
+    {% if current_user.is_authenticated %}
+    "<p>Hello, {{current_user.username }}</p>
+        ! You're logged in! Email: {{ current_user.email }}</p>"
+        <div>
+            <p>Google Profile Picture:</p>"
+            <img src="{{current_user.picture }}" alt="Google profile pic"></img>
+        </div>
+        <a href="{{ url_for('auth.logout')}}">+Logout</a>
+    {% else %}
+    <a href="{{ url_for('auth.login')}}">+Login</a>
+    {% endif %}
 </body>
 </html>

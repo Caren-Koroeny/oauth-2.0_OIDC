@@ -1,3 +1,4 @@
+from enum import unique
 from google_oauth import db
 
 
@@ -6,6 +7,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(80), unique = True, nullable = False)
     email = db.Column(db.String(80), unique = True, nullable = False)
+    unique_id = db.Column(db.String(), unique=True)
     profile_pic = db.Column(db.String())
     
     
@@ -14,3 +16,5 @@ class User(db.Model):
         return f'<User > {self.id, self.username,self.email, self.profile_pic}'
     
     
+    def get_id(self):
+        return self.unique_id
