@@ -12,11 +12,12 @@
         ! You're logged in! Email: {{ current_user.email }}</p>"
         <div>
             <p>Google Profile Picture:</p>"
-            <img src="{{current_user.picture }}" alt="Google profile pic"></img>
+            <img src="{{current_user.profile_pic}}" alt="Google profile pic"></img>
         </div>
         <a href="{{ url_for('auth.logout')}}">+Logout</a>
     {% else %}
     <a href="{{ url_for('auth.login')}}">+Login</a>
+    
     {% endif %}
 </body>
 </html>
